@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import './styles.css';
 const Register = props => {
@@ -15,6 +15,10 @@ const Register = props => {
 		} else if (key === 'password') {
 			setPassword(event.currentTarget.value);
 		}
+	};
+
+	const handleLogin = () => {
+		props.history.push('/login');
 	};
 
 	const handleOnSubmit = event => {
@@ -60,6 +64,7 @@ const Register = props => {
 	return (
 		<div className="App">
 			<h1>Register</h1>
+			{!localStorage.token && <Link to="/login">Login</Link>}
 			<form onSubmit={handleOnSubmit}>
 				<input
 					type="email"
